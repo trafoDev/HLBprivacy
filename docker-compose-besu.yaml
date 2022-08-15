@@ -1,16 +1,9 @@
 ---
 version: "3.6"
 
-volumes:
-  public-keys:
-
-
 networks:
   mynetwork.com:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.16.239.0/24
+    external: true
 
 x-besu-bootnode-def: &besu-bootnode-def
   restart: "on-failure"
@@ -33,7 +26,6 @@ services:
     container_name: node1.mynetwork.com
     hostname: node1.mynetwork.com
     volumes:
-      - public-keys:/tmp/
       - ./config/config-besu.toml:/config/config.toml
       - ./config/genesis-besu.json:/config/genesis.json
       - ./config/networkFiles/node1/keys:/opt/besu/keys
@@ -46,7 +38,6 @@ services:
     container_name: node2.mynetwork.com
     hostname: node2.mynetwork.com
     volumes:
-      - public-keys:/tmp/
       - ./config/config-besu.toml:/config/config.toml
       - ./config/genesis-besu.json:/config/genesis.json
       - ./config/networkFiles/node2/keys:/opt/besu/keys
@@ -59,7 +50,6 @@ services:
     container_name: node3.mynetwork.com
     hostname: node3.mynetwork.com
     volumes:
-      - public-keys:/tmp/
       - ./config/config-besu.toml:/config/config.toml
       - ./config/genesis-besu.json:/config/genesis.json
       - ./config/networkFiles/node3/keys:/opt/besu/keys
@@ -72,7 +62,6 @@ services:
     container_name: node4.mynetwork.com
     hostname: node4.mynetwork.com
     volumes:
-      - public-keys:/tmp/
       - ./config/config-besu.toml:/config/config.toml
       - ./config/genesis-besu.json:/config/genesis.json
       - ./config/networkFiles/node4/keys:/opt/besu/keys

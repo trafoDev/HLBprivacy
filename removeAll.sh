@@ -12,4 +12,3 @@ docker rm -vf $(docker ps -aq)
 docker rmi -f $(docker images -aq)
 
 docker network rm hlbprivacy_mynetwork.com
-docker volume rm hlbprivacy_public-keys
